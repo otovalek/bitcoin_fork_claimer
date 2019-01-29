@@ -196,7 +196,7 @@ def der_signature(r, s):
     return "\x30" + lengthprefixed(res)
     
 def gen_k_rfc6979(privkey, m):
-    h1 = hashlib.sha256(m).digest()
+    h1 = m
     x = long2byte(privkey, 32)
     V = "\x01" * 32
     K = "\x00" * 32
@@ -1254,7 +1254,7 @@ class MicroBitcoin(BitcoinFork):
         self.PUBKEY_ADDRESS = chr(26)
         self.SCRIPT_ADDRESS = chr(51)
 
-assert gen_k_rfc6979(0xc9afa9d845ba75166b5c215767b1d6934e50c3db36e89b127b8a622b120f6721, "sample") == 0xa6e3c57dd01abe90086538398355dd4c3b17aa873382b0f24d6129493d8aad60
+assert gen_k_rfc6979(0xc9afa9d845ba75166b5c215767b1d6934e50c3db36e89b127b8a622b120f6721, "sample") == 0x9cf5e8e821936bffaa65304ec6e58315a787369a7c4dac11cd686f8ceb978d1a
 
 parser = argparse.ArgumentParser()
 parser.add_argument("cointicker", help="Coin type", choices=["BTF", "BTW", "BTG", "BCX", "B2X", "UBTC", "SBTC", "BCD", "BPA", "BTN", "BTH", "BTV", "BTT", "BTX", "BTP", "BCK", "CDY", "BTSQ", "WBTC", "BCH", "BTCP", "BCA", "LBTC", "BICC", "BCI", "BCP", "BCBC", "BTCH", "GOD", "BBC", "NBTC", "BCL", "BTCC", "BIFI", "MBC"])
